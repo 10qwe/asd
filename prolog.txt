@@ -1,0 +1,11 @@
+father(X,Y) :- parent(X,Y),male(X).
+mother(X,Y) :- parent(X,Y),female(X).
+has_child(X) :- parent(_,X).
+grandFather(X,Y):- parent(Z,Y),parent(X,Z),male(X).
+grandMother(X,Y):- parent(Z,Y),parent(X,Z),female(X).
+brother(X,Y) :- parent(Z,X),parent(Z,Y),male(X),male(Y).
+sister(X,Y) :-  parent(Z,X),parent(Z,Y),female(X).
+sibling(X,Y) :- parent(Z,X),parent(Z,Y),male(Z),X \= Y.
+cousin(X,Y) :- parent(Z,X),parent(K,Y),Z \= K,(X\=Y),(sibling(Z,K)).
+uncle(X,Y) :- parent(Z,Y),sibling(Z,X),male(X).
+aunt(X,Y) :- parent(Z,Y),sibling(Z,X),female(X).
